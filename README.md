@@ -57,11 +57,15 @@ The mathematical governance framework implements:
 ## Citation
 
 ```bibtex
-@phdthesis{pnr2025,
-  title={Privacy-Preserving DAO Model Using NFT Authentication},
-  author={[Your Name]},
-  year={2025},
-  note={Code: https://github.com/[username]/pnr-dao-implementation}
+@article{bayan2024privacy,
+  title={A Privacy-Preserving DAO Model Using NFT Authentication for the Punishment not Reward Blockchain Architecture},
+  author={Bayan, Talgar and Banach, Richard},
+  journal={arXiv preprint arXiv:2405.13156},
+  year={2024},
+  eprint={2405.13156},
+  archivePrefix={arXiv},
+  primaryClass={cs.CR},
+  doi={10.48550/arXiv.2405.13156}
 }
 ```
 
