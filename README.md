@@ -69,11 +69,3 @@ The mathematical governance framework implements:
 }
 ```
 
-## Status
-
-🔬 **Research Prototype** - For academic demonstration and testing purposes.
-
-## Contact
-
-**Research Questions**: [your.email@university.edu]  
-**Issues**: Use GitHub Issues for technical problems
