@@ -1,58 +1,95 @@
 # PnR DAO Implementation
 
-Smart contract implementation of the Punishment not Reward Decentralized Autonomous Organization model from PhD research on blockchain governance.
+Prototype smart contract implementing the Punishment not Reward DAO model from blockchain governance research.
 
 ## Overview
 
-This contract implements a novel DAO governance mechanism that uses reputation-based deterrence instead of token-based rewards. Key features include:
+This prototype demonstrates a DAO governance mechanism using reputation-based deterrence instead of token rewards. The implementation explores:
 
-- **Soulbound Authentication NFTs** - Non-transferable membership tokens
-- **Democratic Punishment Mechanisms** - Community-driven removal proposals  
-- **Private Deal System** - Confidential transactions with dispute resolution
-- **Reputation Management** - Dynamic scoring based on behavior
+- **Dual NFT Framework** - Authentication and private interaction separation
+- **Punishment Mechanisms** - Graduated penalties from warnings to removal  
+- **Empirical Validation** - Real blockchain data collection and analysis
+- **Cost Analysis** - Layer 1 vs Layer 2 comparison using live network data
+
+## Files Structure
+
+```
+pnr_dao.sol       - Main smart contract with governance logic
+analysis.py       - Empirical data collection from Etherscan/Polygonscan APIs
+```
 
 ## Quick Deploy
 
 ### Using Remix IDE
-1. Go to [remix.ethereum.org](https://remix.ethereum.org)
-2. Create new file and paste the contract code
-3. Install OpenZeppelin: `@openzeppelin/contracts`
+1. Open [remix.ethereum.org](https://remix.ethereum.org)
+2. Paste `pnr_dao.sol` contract code
+3. Install dependency: `@openzeppelin/contracts`
 4. Compile with Solidity 0.8.19+
-5. Deploy to testnet (Polygon Mumbai recommended)
+5. Deploy to Polygon Mumbai testnet
 
 ### Basic Usage
 ```solidity
-// 1. Simulate identity verification
+// Identity verification (simulation)
 pnrDAO.simulateDKYC(userAddress);
 
-// 2. Join DAO with identity commitment
-pnrDAO.joinDAO(keccak256("identity_hash"));
+// Join with commitments
+pnrDAO.joinDAO(identityCommitment, privacyCommitment);
 
-// 3. Create removal proposal
-pnrDAO.createRemovalProposal(badActor, "reason");
+// Create proposal
+pnrDAO.createProposal(targetMember, "behavior violation", 
+                     ProposalType.REPUTATION_PENALTY, 
+                     PunishmentSeverity.WARNING, evidenceRoot);
 
-// 4. Vote on proposals
-pnrDAO.vote(proposalId, true);
-```
+// Vote with evidence
+pnrDAO.vote(proposalId, true, evidenceProof);
 
-## Architecture
-
-```
-PnRDAO.sol
-├── AuthenticationNFT (soulbound membership)
-├── PrivateInteractionNFT (private deals)
-└── Governance (voting & punishment)
+// Private deal
+pnrDAO.createPrivateDeal(seller, "service description", deadline, 
+                        SERVICE_DEALS, privacyCommitment);
 ```
 
 ## Research Context
 
-This implementation demonstrates the practical feasibility of the PnR paradigm described in:
+This prototype implementation supports the practical evaluation described in:
 
-**Chapter 5**: "A Privacy-Preserving DAO Model Using NFT Authentication for the Punishment not Reward Blockchain Architecture"
+**Chapter 5**: "A Privacy-Preserving DAO Model Using NFT Authentication for the PnR Blockchain Architecture"
 
-The mathematical governance framework implements:
-- Equation 5.1: `Loss_reputation >> Gain_cheating`
-- Equation 5.4-5.5: Quorum-based voting mechanisms
+The implementation demonstrates:
+- Identity commitment schemes: `C_i = com(ID_i; r_i)`
+- Empirical cost analysis using real network data
+- Comparative performance with existing DAOs
+
+## Empirical Analysis
+
+Generate validation data:
+```bash
+python analysis.py
+```
+
+The analysis tool collects real-time data from:
+- Etherscan API for Ethereum transaction costs
+- Polygonscan API for Layer 2 network data  
+- CoinGecko API for current pricing
+
+Outputs:
+- `figure1_pnr_cost_analysis.png` - Cost comparison with Compound, Uniswap, Aragon
+- `figure2_efficiency_analysis.png` - Batch operation efficiency models
+
+## Data Sources
+
+All analysis uses verifiable blockchain data:
+- Transaction hashes from major DAOs
+- Real gas measurements from deployed contracts
+- Live network conditions with 95% confidence intervals
+- Mathematical models based on ERC-1155 specifications
+
+
+## Limitations
+
+This is a prototype implementation with known constraints:
+- DKYC simulation (not production-ready verification)
+- Testnet deployment recommended
+- Requires further security auditing for production use
 
 ## Citation
 
@@ -68,4 +105,3 @@ The mathematical governance framework implements:
   doi={10.48550/arXiv.2405.13156}
 }
 ```
-
