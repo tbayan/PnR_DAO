@@ -1,0 +1,33 @@
+graph TD
+    A[Cryptographically Secure Random Number Generator] --> B[Generate 256-bit Private Key]
+    B --> C{Private Key Validation}
+    C -->|Invalid Range| A
+    C -->|Valid| D[secp256k1 Elliptic Curve Point Multiplication]
+    
+    D --> E[Derive Public Key Coordinates<br/>Px, Py]
+    E --> F[Compress Public Key<br/>64-byte uncompressed format]
+    F --> G[Keccak-256 Hash Function]
+    G --> H[256-bit Hash Output]
+    H --> I[Extract Last 20 bytes]
+    I --> J[Ethereum Wallet Address<br/>40-character hexadecimal]
+    
+    B --> K[Store Private Key Securely<br/>Complete wallet control]
+    E --> L[Public Key Available<br/>For signature verification]
+    J --> M[Public Address<br/>For receiving transactions]
+    
+    subgraph "Security Properties"
+        N[One-way Function Property<br/>Computationally Infeasible Reverse]
+        O[Elliptic Curve Discrete Log Problem]
+        P[Collision Resistance<br/>Keccak-256]
+    end
+    
+    D -.-> N
+    G -.-> P
+    D -.-> O
+    
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style J fill:#e8f5e8
+    style K fill:#ffebee
+    style L fill:#f3e5f5
+    style M fill:#e8f5e8
