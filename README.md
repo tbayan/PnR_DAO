@@ -1,4 +1,4 @@
-# PnR DAO Implementation
+# A Privacy-Preserving DAO Model Using NFT Authentication for the Punishment not Reward Blockchain Architecture
 
 Prototype smart contract implementing the Punishment not Reward DAO model from blockchain governance research.
 
