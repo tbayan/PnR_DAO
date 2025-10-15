@@ -17,6 +17,8 @@ This prototype demonstrates a DAO governance mechanism using reputation-based de
 pnr_dao.sol       - Main smart contract with governance logic
 analysis.py       - Empirical data collection from Etherscan/Polygonscan APIs
 ```
+## ETH Historical Price Based Chart:
+https://etherscan.io/chart/etherprice
 
 ## Quick Deploy
 
