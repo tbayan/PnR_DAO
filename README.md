@@ -20,6 +20,15 @@ analysis.py       - Empirical data collection from Etherscan/Polygonscan APIs
 ## ETH Historical Price Based Chart:
 https://etherscan.io/chart/etherprice
 
+### On-Chain Data Collection
+Access our complete dataset of 150 governance transactions:
+- [Raw transaction data](https://github.com/tbayan/PnR_DAO/tree/main/On-Chain%20Data)
+- MakerDAO: 25 transactions (\$0.89 avg)
+- Compound: 25 transactions (\$0.33 avg)  
+- Uniswap: 25 transactions (\$0.15 avg)
+- Arbitrum DAO: 25 transactions (\$0.0061 avg)
+- Polygon: 50 transactions (\$0.0037 avg)
+
 ## Quick Deploy
 
 ### Using Remix IDE
