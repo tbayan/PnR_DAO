@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts@4.9.6/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts@4.9.6/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts@4.9.6/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts@4.9.6/access/Ownable.sol";
+import "@openzeppelin/contracts@4.9.6/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts@4.9.6/utils/Counters.sol";
+import "@openzeppelin/contracts@4.9.6/utils/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts@4.9.6/utils/Strings.sol";
 
 contract PnRDAO is Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
@@ -337,7 +338,7 @@ contract PnRDAO is Ownable, ReentrancyGuard {
     }
     
 
-    function completeDeal(uint256 dealId, bytes32[] calldata completionProof) external nonReentrant {
+    function completeDeal(uint256 dealId, bytes32[] calldata /* completionProof */) external nonReentrant {
         PrivateDeal storage deal = privateDeals[dealId];
         require(deal.seller == msg.sender, "Only seller can complete");
         require(deal.status == DealStatus.ACTIVE, "Deal not active");
@@ -365,7 +366,7 @@ contract PnRDAO is Ownable, ReentrancyGuard {
     }
     
 
-    function initiateDealDispute(uint256 dealId, string memory reason) external {
+    function initiateDealDispute(uint256 dealId, string memory /* reason */) external {
         PrivateDeal storage deal = privateDeals[dealId];
         require(deal.buyer == msg.sender || deal.seller == msg.sender, "Not party to deal");
         require(deal.status == DealStatus.ACTIVE, "Deal not active");
@@ -384,19 +385,19 @@ contract PnRDAO is Ownable, ReentrancyGuard {
     }
     
     function batchPunishMembers(
-        address[] calldata members,
+        address[] calldata targetMembers,
         uint256 punishmentType,
         string memory reason
     ) external onlyOwner {
-        for (uint i = 0; i < members.length; i++) {
+        for (uint i = 0; i < targetMembers.length; i++) {
             if (punishmentType == 1) { // Reputation penalty
-                _penalizeReputation(members[i], PunishmentSeverity.WARNING);
+                _penalizeReputation(targetMembers[i], PunishmentSeverity.WARNING);
             } else if (punishmentType == 2) { // Restriction
-                _restrictMemberInteractions(members[i], PunishmentSeverity.RESTRICTION, reason);
+                _restrictMemberInteractions(targetMembers[i], PunishmentSeverity.RESTRICTION, reason);
             }
         }
-        
-        emit BatchPunishmentExecuted(members, punishmentType);
+
+        emit BatchPunishmentExecuted(targetMembers, punishmentType);
     }
     
 
@@ -574,7 +575,7 @@ contract PrivateInteractionNFT is ERC1155, Ownable {
         soulboundTokens[tokenType] = soulbound;
     }
     
-    function uri(uint256 tokenType) public view override returns (string memory) {
+    function uri(uint256 tokenType) public pure override returns (string memory) {
         return string(
             abi.encodePacked(
                 "https://api.pnrdao.com/token/",
