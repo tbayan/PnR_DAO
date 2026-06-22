@@ -1,0 +1,9 @@
+operation,n,mean_gas,mean_fee_eth,mean_fee_usd
+Batch Punish Members,2,81606,0.00000177,0.003545
+Complete Deal,2,167547,0.00000168,0.003358
+Create Private Deal,3,304877,0.00000445,0.008903
+Create Proposal,2,182009,0.00000248,0.004953
+Initiate Deal Dispute,1,113436,0.00000114,0.002283
+Join DAO,3,326029,0.00000440,0.008808
+Simulate DKYC,3,46212,0.00000095,0.001898
+Vote,6,74862,0.00000170,0.003397

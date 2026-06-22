@@ -1,2 +1,12 @@
 venv/
 .env
+addressing_the _reviewer_comments.md
+paper_bcra/
+paper_submitted/
+reviews_major_revision.md
+AI_words_avoid_to_use.md
+# node / hardhat build artifacts
+node_modules/
+deployment/node_modules/
+deployment/cache/
+deployment/artifacts/
